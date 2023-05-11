@@ -51,51 +51,61 @@ public class CounterController {
   }
 
 
+//  /**
+//   * 更新计数，自增或者清零
+//   * @param request {@link CounterRequest}
+//   * @return API response json
+//   */
+//  @PostMapping(value = "/api/count")
+//  ApiResponse create(@RequestBody CounterRequest request) {
+//    logger.info("/api/count post request, action: {}", request.getAction());
+//
+//    Optional<Counter> curCounter = counterService.getCounter(1);
+//    if (request.getAction().equals("inc")) {
+//      Integer count = 1;
+//      if (curCounter.isPresent()) {
+//        count += curCounter.get().getCount();
+//      }
+//      Counter counter = new Counter();
+//      counter.setId(1);
+//      counter.setCount(count);
+//      counterService.upsertCount(counter);
+//      return ApiResponse.ok(count);
+//    } else if (request.getAction().equals("clear")) {
+//      if (!curCounter.isPresent()) {
+//        return ApiResponse.ok(0);
+//      }
+//      counterService.clearCount(1);
+//      return ApiResponse.ok(0);
+//    } else {
+//      return ApiResponse.error("参数action错误");
+//    }
+//  }
   /**
    * 更新计数，自增或者清零
    * @param request {@link CounterRequest}
    * @return API response json
    */
   @PostMapping(value = "/api/count")
-  ApiResponse create(@RequestBody CounterRequest request) {
-    logger.info("/api/count post request, action: {}", request.getAction());
+  ApiResponse create(@RequestBody Map<String, String> request) {
+    logger.info("/api/count post request");
 
-    Optional<Counter> curCounter = counterService.getCounter(1);
-    if (request.getAction().equals("inc")) {
-      Integer count = 1;
-      if (curCounter.isPresent()) {
-        count += curCounter.get().getCount();
-      }
-      Counter counter = new Counter();
-      counter.setId(1);
-      counter.setCount(count);
-      counterService.upsertCount(counter);
-      return ApiResponse.ok(count);
-    } else if (request.getAction().equals("clear")) {
-      if (!curCounter.isPresent()) {
-        return ApiResponse.ok(0);
-      }
-      counterService.clearCount(1);
-      return ApiResponse.ok(0);
-    } else {
-      return ApiResponse.error("参数action错误");
-    }
+    return ApiResponse.ok(request);
   }
 
 
 
 
-
-  @PostMapping(value = "/api/callback")
-  ApiResponse callback(@RequestBody Map<String, String> request) {
-    logger.info("/api/callback post request");
-    Map<String, String> response = new HashMap<String, String>();
-    response.put('ToUserName', request.get('FromUserName'));
-    response.put('FromUserName', request.get('ToUserName'));
-    response.put('CreateTime', 123456789);
-    response.put('MsgType', request.get('MsgType'));
-    response.put('Content','![CDATA[你好]]');
-    return ApiResponse.ok(response);
-
-  }
+//  @PostMapping(value = "/api/callback")
+//  ApiResponse callback(@RequestBody Map<String, String> request) {
+//    logger.info("/api/callback post request");
+//    Map<String, String> response = new HashMap<String, String>();
+//    response.put('ToUserName', request.get('FromUserName'));
+//    response.put('FromUserName', request.get('ToUserName'));
+//    response.put('CreateTime', 123456789);
+//    response.put('MsgType', request.get('MsgType'));
+//    response.put('Content','![CDATA[你好]]');
+//    return ApiResponse.ok(response);
+//
+//  }
 }
