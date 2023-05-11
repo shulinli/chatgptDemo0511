@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.List;
 
@@ -79,5 +81,21 @@ public class CounterController {
       return ApiResponse.error("参数action错误");
     }
   }
+
+
+
+
   
+  @PostMapping(value = "/api/callback")
+  ApiResponse callback(@RequestBody Map<String, String> request) {
+    logger.info("/api/callback post request");
+    Map<String, String> response = new HashMap<String, String>();
+    response.put('ToUserName', request.get('FromUserName'));
+    response.put('FromUserName', request.get('ToUserName'));
+    response.put('CreateTime', 123456789);
+    response.put('MsgType', request.get('MsgType'));
+    response.put('Content','![CDATA[你好]]');
+    ApiResponse.ok(response);
+
+  }
 }
