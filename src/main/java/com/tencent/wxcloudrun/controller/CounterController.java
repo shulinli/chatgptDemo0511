@@ -87,10 +87,16 @@ public class CounterController {
    * @return API response json
    */
   @PostMapping(value = "/api/count")
-  ApiResponse create(@RequestBody Map<String, String> request) {
+  @ResponseBody
+  Map<String, String> create(@RequestBody Map<String, String> request) {
     logger.info("/api/count post request");
-
-    return ApiResponse.ok(request);
+    Map<String, String> response = new HashMap<String, String>();
+    response.put("ToUserName", request.get("FromUserName"));
+    response.put("FromUserName", request.get("ToUserName"));
+    response.put("CreateTime", "123456789");
+    response.put("MsgType", request.get("MsgType"));
+    response.put("Content","![CDATA[你好]]");
+    return response;
   }
 
 
