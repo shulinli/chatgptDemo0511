@@ -85,7 +85,7 @@ public class CounterController {
 
 
 
-  
+
   @PostMapping(value = "/api/callback")
   ApiResponse callback(@RequestBody Map<String, String> request) {
     logger.info("/api/callback post request");
@@ -95,7 +95,7 @@ public class CounterController {
     response.put('CreateTime', 123456789);
     response.put('MsgType', request.get('MsgType'));
     response.put('Content','![CDATA[你好]]');
-    ApiResponse.ok(response);
+    return ApiResponse.ok(response);
 
   }
 }
