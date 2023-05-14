@@ -157,6 +157,12 @@ public class CounterController {
 //    Map map3 = (Map)obj.get("message");
 //    String result = (String)map3.get("content");
 
+    if(request.get("Content") == "1"){
+      String result = Smap.get("key");
+      response.put("Content", result);
+      return response;
+    }
+
 
     ExecutorService threadPool = new ThreadPoolExecutor(1, 5, 1000, TimeUnit.MILLISECONDS, new SynchronousQueue<Runnable>(), Executors.defaultThreadFactory(),new ThreadPoolExecutor.AbortPolicy());
 
@@ -192,13 +198,8 @@ public class CounterController {
 
 
 
-    String result = Smap.get("key");
+    String result = "请稍后回复1显示答案";
 
-
-
-
-
-    Smap.put("key", result);
 
     response.put("Content", result);
     logger.info("gpt call success");
