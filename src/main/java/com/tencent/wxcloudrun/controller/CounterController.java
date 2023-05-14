@@ -101,11 +101,11 @@ public class CounterController {
     response.put("MsgType", request.get("MsgType"));
 
 
-    System.setProperty("http.proxyHost", "127.0.0.1");
-    System.setProperty("http.proxyPort", "7890");
-
-    System.setProperty("https.proxyHost", "127.0.0.1");
-    System.setProperty("https.proxyPort", "7890");
+//    System.setProperty("http.proxyHost", "127.0.0.1");
+//    System.setProperty("http.proxyPort", "7890");
+//
+//    System.setProperty("https.proxyHost", "127.0.0.1");
+//    System.setProperty("https.proxyPort", "7890");
 
     OkHttpClient client = new OkHttpClient();
 
