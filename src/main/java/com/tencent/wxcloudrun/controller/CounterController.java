@@ -34,6 +34,7 @@ public class CounterController {
   final CounterService counterService;
   final Logger logger;
   public Map<String, String> Smap;
+  public ExecutorService threadPool = new ThreadPoolExecutor(1, 5, 1000, TimeUnit.MILLISECONDS, new SynchronousQueue<Runnable>(), Executors.defaultThreadFactory(),new ThreadPoolExecutor.AbortPolicy());
 
   public CounterController(@Autowired CounterService counterService) {
     this.counterService = counterService;
@@ -158,18 +159,18 @@ public class CounterController {
 //    String result = (String)map3.get("content");
 
     if(request.get("Content").equals("1")){
-      String result = Smap.get("key");
+      String result = Smap.get(request.get("FromUserName"));
       response.put("Content", result);
       return response;
     }
 
 
-    ExecutorService threadPool = new ThreadPoolExecutor(1, 5, 1000, TimeUnit.MILLISECONDS, new SynchronousQueue<Runnable>(), Executors.defaultThreadFactory(),new ThreadPoolExecutor.AbortPolicy());
+
 
     System.out.println("1");
-    Callable<Boolean> callable = new Callable<Boolean>() {
+    threadPool.execute(new Runnable() {
       @Override
-      public Boolean call() throws IOException {
+      public void run() {
         System.out.println("2");
         Response res = client.newCall(req).execute();
 
@@ -183,14 +184,37 @@ public class CounterController {
         Map<String,Object> obj = (Map<String, Object>) (choices.get(0));
         Map map3 = (Map)obj.get("message");
         String result = (String)map3.get("content");
-        Smap.put("key", result);
+        Smap.put(request.get("FromUserName"), result);
 
 
         System.out.println("3");
-        return true;
+
       }
-    };
-    
+    });
+//    Callable<Boolean> callable = new Callable<Boolean>() {
+//      @Override
+//      public Boolean call() throws IOException {
+//        System.out.println("2");
+//        Response res = client.newCall(req).execute();
+//
+//
+//        String responseBody = res.body().string();
+//        logger.info(responseBody);
+//
+//        Map mapTypes = JSON.parseObject(responseBody);
+//
+//        List choices = (List) mapTypes.get("choices");
+//        Map<String,Object> obj = (Map<String, Object>) (choices.get(0));
+//        Map map3 = (Map)obj.get("message");
+//        String result = (String)map3.get("content");
+//        Smap.put(request.get("FromUserName"), result);
+//
+//
+//        System.out.println("3");
+//        return true;
+//      }
+//    };
+
 
 
 
