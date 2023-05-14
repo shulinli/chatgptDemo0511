@@ -157,7 +157,7 @@ public class CounterController {
 //    Map map3 = (Map)obj.get("message");
 //    String result = (String)map3.get("content");
 
-    if(request.get("Content") == "1"){
+    if(request.get("Content").equals("1")){
       String result = Smap.get("key");
       response.put("Content", result);
       return response;
