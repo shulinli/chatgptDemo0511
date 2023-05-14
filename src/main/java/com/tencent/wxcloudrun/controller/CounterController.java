@@ -123,7 +123,7 @@ public class CounterController {
     ArrayList<Map<String, String>> list = new ArrayList<>();
     Map<String, String> map = new HashMap<>();
     map.put("role", "user");
-    map.put("content", "hello");
+    map.put("content", request.get("Content"));
     list.add(map);
     Map<String, Object> map2 = new HashMap<>();
     map2.put("model", "gpt-3.5-turbo");
@@ -169,7 +169,7 @@ public class CounterController {
 
 
 
-    response.put("Content","\""+result+"\"");
+    response.put("Content","![CDATA["+result+"]]");
     return response;
   }
 
