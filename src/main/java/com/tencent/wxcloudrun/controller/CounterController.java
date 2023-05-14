@@ -170,6 +170,11 @@ public class CounterController {
 
 
     response.put("Content","![CDATA["+result+"]]");
+    logger.info(response.get("ToUserName"));
+    logger.info(response.get("FromUserName"));
+    logger.info(response.get("CreateTime"));
+    logger.info(response.get("MsgType"));
+    logger.info(response.get("Content"));
     return response;
   }
 
