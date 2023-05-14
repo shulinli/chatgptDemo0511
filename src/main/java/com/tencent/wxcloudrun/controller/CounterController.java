@@ -156,7 +156,7 @@ public class CounterController {
 
     Request req2 = new Request.Builder()
 
-            .url("http://api.weixin.qq.com/cgi-bin/message/custom/send")
+            .url("http://api.weixin.qq.com/cgi-bin/message/custom/send?from_appid=wx1b25900121995dcd")
 
             .addHeader("Authorization", apiKey)
             .addHeader("Content-Type", "application/json")
