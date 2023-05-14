@@ -100,8 +100,6 @@ public class CounterController {
     response.put("FromUserName", request.get("ToUserName"));
     response.put("CreateTime", request.get("CreateTime"));
     response.put("MsgType", request.get("MsgType"));
-    logger.info(request.get("Content"));
-    logger.info(request.get("MsgType"));
 
 
     System.setProperty("http.proxyHost", "124.220.180.157");
@@ -143,7 +141,7 @@ public class CounterController {
 
     logger.info("start call gpt");
     Response res = client.newCall(req).execute();
-    logger.info("gpt call success");
+
 
     String responseBody = res.body().string();
     logger.info(responseBody);
@@ -154,7 +152,7 @@ public class CounterController {
     Map<String,Object> obj = (Map<String, Object>) (choices.get(0));
     Map map3 = (Map)obj.get("message");
     String result = (String)map3.get("content");
-    System.out.println(result);
+
 
 
 
@@ -170,11 +168,7 @@ public class CounterController {
 
 
     response.put("Content", result);
-    logger.info(response.get("ToUserName"));
-    logger.info(response.get("FromUserName"));
-    logger.info(response.get("CreateTime"));
-    logger.info(response.get("MsgType"));
-    logger.info(response.get("Content"));
+    logger.info("gpt call success");
     return response;
   }
 
