@@ -102,80 +102,79 @@ public class CounterController {
     response.put("MsgType", request.get("MsgType"));
     logger.info(request.get("Content"));
     logger.info(request.get("MsgType"));
-    response.put("Content", "你好");
 
-//
-//    System.setProperty("http.proxyHost", "124.220.180.157");
-//    System.setProperty("http.proxyPort", "7890");
-//
-//    System.setProperty("https.proxyHost", "124.220.180.157");
-//    System.setProperty("https.proxyPort", "7890");
-//
-//    OkHttpClient client = new OkHttpClient();
-//
-//    String url = "https://api.openai.com/v1/chat/completions";
-//
-//    String apiKey = "Bearer sk-UHsponWaoktyNXL7ICaKT3";
-//
-//    apiKey += "BlbkFJ91eTiHWiBv37FbkTXJlZ";
-//
-//    String message = "[{\"role\": \"user\", \"content\": \"" + request.get("Content") + "\"}]";
-//
-//    ArrayList<Map<String, String>> list = new ArrayList<>();
-//    Map<String, String> map = new HashMap<>();
-//    map.put("role", "user");
-//    map.put("content", request.get("Content"));
-//    list.add(map);
-//    Map<String, Object> map2 = new HashMap<>();
-//    map2.put("model", "gpt-3.5-turbo");
-//    map2.put("messages", list);
-//    String str= new JSONObject(map2).toString();
-//
-//    Request req = new Request.Builder()
-//
-//            .url(url)
-//
-//            .addHeader("Authorization", apiKey)
-//            .addHeader("Content-Type", "application/json")
-//
-//            .post(okhttp3.RequestBody.create(MediaType.parse("application/json"), str))
-//
-//            .build();
-//
-//    logger.info("start call gpt");
-//    Response res = client.newCall(req).execute();
-//    logger.info("gpt call success");
-//
-//    String responseBody = res.body().string();
-//    logger.info(responseBody);
-//
-//    Map mapTypes = JSON.parseObject(responseBody);
-//
-//    List choices = (List) mapTypes.get("choices");
-//    Map<String,Object> obj = (Map<String, Object>) (choices.get(0));
-//    Map map3 = (Map)obj.get("message");
-//    String result = (String)map3.get("content");
-//    System.out.println(result);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//    response.put("Content","![CDATA["+result+"]]");
-//    logger.info(response.get("ToUserName"));
-//    logger.info(response.get("FromUserName"));
-//    logger.info(response.get("CreateTime"));
-//    logger.info(response.get("MsgType"));
-//    logger.info(response.get("Content"));
+
+    System.setProperty("http.proxyHost", "124.220.180.157");
+    System.setProperty("http.proxyPort", "7890");
+
+    System.setProperty("https.proxyHost", "124.220.180.157");
+    System.setProperty("https.proxyPort", "7890");
+
+    OkHttpClient client = new OkHttpClient();
+
+    String url = "https://api.openai.com/v1/chat/completions";
+
+    String apiKey = "Bearer sk-UHsponWaoktyNXL7ICaKT3";
+
+    apiKey += "BlbkFJ91eTiHWiBv37FbkTXJlZ";
+
+    String message = "[{\"role\": \"user\", \"content\": \"" + request.get("Content") + "\"}]";
+
+    ArrayList<Map<String, String>> list = new ArrayList<>();
+    Map<String, String> map = new HashMap<>();
+    map.put("role", "user");
+    map.put("content", request.get("Content"));
+    list.add(map);
+    Map<String, Object> map2 = new HashMap<>();
+    map2.put("model", "gpt-3.5-turbo");
+    map2.put("messages", list);
+    String str= new JSONObject(map2).toString();
+
+    Request req = new Request.Builder()
+
+            .url(url)
+
+            .addHeader("Authorization", apiKey)
+            .addHeader("Content-Type", "application/json")
+
+            .post(okhttp3.RequestBody.create(MediaType.parse("application/json"), str))
+
+            .build();
+
+    logger.info("start call gpt");
+    Response res = client.newCall(req).execute();
+    logger.info("gpt call success");
+
+    String responseBody = res.body().string();
+    logger.info(responseBody);
+
+    Map mapTypes = JSON.parseObject(responseBody);
+
+    List choices = (List) mapTypes.get("choices");
+    Map<String,Object> obj = (Map<String, Object>) (choices.get(0));
+    Map map3 = (Map)obj.get("message");
+    String result = (String)map3.get("content");
+    System.out.println(result);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    response.put("Content", result);
+    logger.info(response.get("ToUserName"));
+    logger.info(response.get("FromUserName"));
+    logger.info(response.get("CreateTime"));
+    logger.info(response.get("MsgType"));
+    logger.info(response.get("Content"));
     return response;
   }
 
