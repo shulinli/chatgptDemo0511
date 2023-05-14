@@ -149,10 +149,9 @@ public class CounterController {
     logger.info(responseBody);
 
     Map mapTypes = JSON.parseObject(responseBody);
-    String s = (String) mapTypes.get("Content");
-    Map map1 = JSON.parseObject(s);
-    List choices = (List) map1.get("choices");
-    Map<String,Object> obj = (Map<String, Object>)choices.get(0);
+
+    List choices = (List) mapTypes.get("choices");
+    Map<String,Object> obj = (Map<String, Object>) (choices.get(0));
     Map map3 = (Map)obj.get("message");
     String result = (String)map3.get("content");
     System.out.println(result);
