@@ -118,7 +118,7 @@ public class CounterController {
 
     apiKey += "BlbkFJ91eTiHWiBv37FbkTXJlZ";
 
-    String message = "[{\"role\": \"user\", \"content\": \"Hello!\"}]";
+    String message = "[{\"role\": \"user\", \"content\": request.get(\"Content\")}]";
 
     ArrayList<Map<String, String>> list = new ArrayList<>();
     Map<String, String> map = new HashMap<>();
