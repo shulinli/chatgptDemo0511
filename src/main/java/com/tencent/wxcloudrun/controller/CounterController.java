@@ -172,10 +172,20 @@ public class CounterController {
       @Override
       public void run() {
         System.out.println("2");
-        Response res = client.newCall(req).execute();
+        Response res = null;
+        try {
+          res = client.newCall(req).execute();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
 
 
-        String responseBody = res.body().string();
+        String responseBody = null;
+        try {
+          responseBody = res.body().string();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
         logger.info(responseBody);
 
         Map mapTypes = JSON.parseObject(responseBody);

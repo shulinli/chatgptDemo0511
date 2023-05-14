@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1ddc2f9-3a91-4810-bd30-5430084a7de6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tencent/wxcloudrun/controller/CounterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tencent/wxcloudrun/controller/CounterController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1683789234283</updated>
       <workItem from="1683789240623" duration="11322000" />
-      <workItem from="1684060718278" duration="24311000" />
+      <workItem from="1684060718278" duration="24670000" />
     </task>
     <servers />
   </component>
