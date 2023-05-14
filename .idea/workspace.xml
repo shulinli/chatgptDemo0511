@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1ddc2f9-3a91-4810-bd30-5430084a7de6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tencent/wxcloudrun/controller/CounterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tencent/wxcloudrun/controller/CounterController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +30,10 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
+        <option name="localRepository" value="D:\maven\repository" />
+        <option name="mavenHome" value="D:/APPINSTALL/apache-maven-3.8.5" />
         <option name="useMavenConfig" value="true" />
+        <option name="userSettingsFile" value="D:\maven\settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -42,12 +47,25 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/tencent/wxcloudrun/util" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Administrator\Desktop\微信公众号开发\后台代码仓库\chatgptDemo0511\src\main\java\com\tencent\wxcloudrun\util" />
       <recent name="C:\Users\Administrator\Desktop\微信公众号开发\后台代码仓库\chatgptDemo0511\src\main\java\com\tencent\wxcloudrun\model" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="WxCloudRunApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="springboot-wxcloudrun" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.tencent.wxcloudrun.WxCloudRunApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -58,6 +76,7 @@
       <option name="presentableId" value="Default" />
       <updated>1683789234283</updated>
       <workItem from="1683789240623" duration="11322000" />
+      <workItem from="1684060718278" duration="854000" />
     </task>
     <servers />
   </component>
