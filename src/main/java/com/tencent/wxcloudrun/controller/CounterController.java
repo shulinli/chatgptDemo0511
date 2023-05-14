@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.*;
 
 /**
  * counter控制器
@@ -32,10 +33,12 @@ public class CounterController {
 
   final CounterService counterService;
   final Logger logger;
+  public Map<String, String> Smap;
 
   public CounterController(@Autowired CounterService counterService) {
     this.counterService = counterService;
     this.logger = LoggerFactory.getLogger(CounterController.class);
+    this.Smap = new HashMap<>();
   }
 
 
@@ -140,40 +143,48 @@ public class CounterController {
             .build();
 
     logger.info("start call gpt");
-    Response res = client.newCall(req).execute();
+
+//    Response res = client.newCall(req).execute();
+//
+//
+//    String responseBody = res.body().string();
+//    logger.info(responseBody);
+//
+//    Map mapTypes = JSON.parseObject(responseBody);
+//
+//    List choices = (List) mapTypes.get("choices");
+//    Map<String,Object> obj = (Map<String, Object>) (choices.get(0));
+//    Map map3 = (Map)obj.get("message");
+//    String result = (String)map3.get("content");
 
 
-    String responseBody = res.body().string();
-    logger.info(responseBody);
+    ExecutorService threadPool = new ThreadPoolExecutor(1, 5, 1000, TimeUnit.MILLISECONDS, new SynchronousQueue<Runnable>(), Executors.defaultThreadFactory(),new ThreadPoolExecutor.AbortPolicy());
 
-    Map mapTypes = JSON.parseObject(responseBody);
+    System.out.println("1");
+    Callable<Boolean> callable = new Callable<Boolean>() {
+      @Override
+      public Boolean call() throws IOException {
+        System.out.println("2");
+        Response res = client.newCall(req).execute();
 
-    List choices = (List) mapTypes.get("choices");
-    Map<String,Object> obj = (Map<String, Object>) (choices.get(0));
-    Map map3 = (Map)obj.get("message");
-    String result = (String)map3.get("content");
+
+        String responseBody = res.body().string();
+        logger.info(responseBody);
+
+        Map mapTypes = JSON.parseObject(responseBody);
+
+        List choices = (List) mapTypes.get("choices");
+        Map<String,Object> obj = (Map<String, Object>) (choices.get(0));
+        Map map3 = (Map)obj.get("message");
+        String result = (String)map3.get("content");
+        Smap.put("key", result);
 
 
-    Request req2 = new Request.Builder()
-
-            .url("http://api.weixin.qq.com/cgi-bin/message/custom/send?from_appid=wx1b25900121995dcd")
-
-            .addHeader("Authorization", apiKey)
-            .addHeader("Content-Type", "application/json")
-
-            .post(okhttp3.RequestBody.create(MediaType.parse("application/json"), "{\n" +
-                    "  \"touser\":\"gh_dc1683ce0737\",\n" +
-                    "  \"msgtype\":\"text\",\n" +
-                    "  \"text\": {\n" +
-                    "    \"content\":\"文本消息\"\n" +
-                    "  }\n" +
-                    "}"))
-
-            .build();
-
-    logger.info("start call gpt");
-    Response res2 = client.newCall(req2).execute();
-    logger.info(res2.body().string());
+        System.out.println("3");
+        return true;
+      }
+    };
+    threadPool.submit(callable);
 
 
 
@@ -181,12 +192,13 @@ public class CounterController {
 
 
 
+    String result = Smap.get("key");
 
 
 
 
 
-
+    Smap.put("key", result);
 
     response.put("Content", result);
     logger.info("gpt call success");
