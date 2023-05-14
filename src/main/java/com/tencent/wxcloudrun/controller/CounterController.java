@@ -112,7 +112,7 @@ public class CounterController {
     System.setProperty("https.proxyHost", "124.220.180.157");
     System.setProperty("https.proxyPort", "7890");
 
-    OkHttpClient client = new OkHttpClient().newBuilder().connectTimeout(60,TimeUnit.SECONDS)
+    OkHttpClient client = new OkHttpClient().newBuilder().connectTimeout(120,TimeUnit.SECONDS)
             .readTimeout(60,TimeUnit.SECONDS)
             .writeTimeout(60,TimeUnit.SECONDS)
             .build();
@@ -235,7 +235,8 @@ public class CounterController {
 
 
 
-    String result = "请稍后回复1显示答案";
+    String result = "请稍后回复1显示答案,复杂的问题需要等待的时间较长";
+    Smap.put(request.get("FromUserName"), "请稍等");
 
 
     response.put("Content", result);
