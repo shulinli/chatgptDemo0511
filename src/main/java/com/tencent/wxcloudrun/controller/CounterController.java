@@ -112,7 +112,10 @@ public class CounterController {
     System.setProperty("https.proxyHost", "124.220.180.157");
     System.setProperty("https.proxyPort", "7890");
 
-    OkHttpClient client = new OkHttpClient();
+    OkHttpClient client = new OkHttpClient().newBuilder().connectTimeout(60,TimeUnit.SECONDS)
+            .readTimeout(60,TimeUnit.SECONDS)
+            .writeTimeout(60,TimeUnit.SECONDS)
+            .build();
 
     String url = "https://api.openai.com/v1/chat/completions";
 
