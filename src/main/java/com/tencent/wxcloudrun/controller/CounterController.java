@@ -173,6 +173,7 @@ public class CounterController {
 
     logger.info("start call gpt");
     Response res2 = client.newCall(req2).execute();
+    logger.info(res2.body().string());
 
 
 
