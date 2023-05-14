@@ -154,6 +154,26 @@ public class CounterController {
     String result = (String)map3.get("content");
 
 
+    Request req2 = new Request.Builder()
+
+            .url("http://api.weixin.qq.com/cgi-bin/message/custom/send")
+
+            .addHeader("Authorization", apiKey)
+            .addHeader("Content-Type", "application/json")
+
+            .post(okhttp3.RequestBody.create(MediaType.parse("application/json"), "{\n" +
+                    "  \"touser\":\"gh_dc1683ce0737\",\n" +
+                    "  \"msgtype\":\"text\",\n" +
+                    "  \"text\": {\n" +
+                    "    \"content\":\"文本消息\"\n" +
+                    "  }\n" +
+                    "}"))
+
+            .build();
+
+    logger.info("start call gpt");
+    Response res2 = client.newCall(req).execute();
+
 
 
 
