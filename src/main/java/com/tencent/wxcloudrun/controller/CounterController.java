@@ -164,7 +164,7 @@ public class CounterController {
     if(request.get("Content").equals("1")){
       String result = Smap.get(request.get("FromUserName"));
       if(result.equals("010")){
-        response.put("Content", "请稍等");
+        response.put("Content", "请稍等 回答正在生成。。。");
       }
       else {
         response.put("Content", result);
@@ -241,7 +241,7 @@ public class CounterController {
 
 
 
-    String result = "请稍后回复1显示答案,复杂的问题需要等待的时间较长";
+    String result = "请稍后回复1显示答案,若多次回复未回答，请重新提问";
     Smap.put(request.get("FromUserName"), "010");
 
 
