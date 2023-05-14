@@ -100,6 +100,8 @@ public class CounterController {
     response.put("FromUserName", request.get("ToUserName"));
     response.put("CreateTime", "123456789");
     response.put("MsgType", request.get("MsgType"));
+    logger.info(request.get("Content"));
+    logger.info(request.get("MsgType"));
 
 
     System.setProperty("http.proxyHost", "124.220.180.157");
@@ -144,6 +146,7 @@ public class CounterController {
     logger.info("gpt call success");
 
     String responseBody = res.body().string();
+    logger.info(responseBody);
 
     Map mapTypes = JSON.parseObject(responseBody);
     String s = (String) mapTypes.get("Content");
