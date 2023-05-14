@@ -169,7 +169,7 @@ public class CounterController {
 
 
 
-    response.put("Content",result);
+    response.put("Content","\""+result+"\"");
     return response;
   }
 
