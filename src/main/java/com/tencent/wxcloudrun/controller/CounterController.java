@@ -1,5 +1,6 @@
 package com.tencent.wxcloudrun.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -112,7 +113,7 @@ public class CounterController {
     String url = "https://api.openai.com/v1/chat/completions";
 
     String apiKey = "Bearer sk-UHsponWaoktyNXL7ICaKT3";
-    
+
     apiKey += "BlbkFJ91eTiHWiBv37FbkTXJlZ";
 
     String message = "[{\"role\": \"user\", \"content\": \"Hello!\"}]";
@@ -144,6 +145,14 @@ public class CounterController {
 
     String responseBody = res.body().string();
 
+    Map mapTypes = JSON.parseObject(responseBody);
+    String s = (String) mapTypes.get("Content");
+    Map map1 = JSON.parseObject(s);
+    List choices = (List) map1.get("choices");
+    Map<String,Object> obj = (Map<String, Object>)choices.get(0);
+    Map map3 = (Map)obj.get("message");
+    String result = (String)map3.get("content");
+    System.out.println(result);
 
 
 
@@ -157,7 +166,8 @@ public class CounterController {
 
 
 
-    response.put("Content",responseBody);
+
+    response.put("Content",result);
     return response;
   }
 
