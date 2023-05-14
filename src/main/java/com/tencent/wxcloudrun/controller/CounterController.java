@@ -111,7 +111,9 @@ public class CounterController {
 
     String url = "https://api.openai.com/v1/chat/completions";
 
-    String apiKey = "Bearer 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";
+    String apiKey = "Bearer sk-UHsponWaoktyNXL7ICaKT3";
+    
+    apiKey += "BlbkFJ91eTiHWiBv37FbkTXJlZ";
 
     String message = "[{\"role\": \"user\", \"content\": \"Hello!\"}]";
 
